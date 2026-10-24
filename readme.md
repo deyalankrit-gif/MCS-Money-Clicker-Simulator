@@ -1,0 +1,1 @@
+This is an indie game made by me based on cookie clicker.
