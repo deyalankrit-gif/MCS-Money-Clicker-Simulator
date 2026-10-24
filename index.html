@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2a6f">
+  <meta name="description" content="Money Clicker — click, earn, upgrade, and build your money empire.">
+  <title>Money Clicker</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="game">
+    <section id="main" aria-label="Main game">
+      <div id="balance-bar">
+        <div id="balance" aria-live="polite">$0</div>
+        <div id="per-second">per second: $0</div>
+        <div id="buff-bar"></div>
+      </div>
+
+      <div id="click-zone">
+        <button id="dollar" type="button" aria-label="Click to earn money">
+          <img id="dollar-img" src="dollar.png" alt=""
+               onerror="this.style.display='none'; document.getElementById('dollar-fallback').style.display='block';">
+          <span id="dollar-fallback" style="display:none;" aria-hidden="true">💵</span>
+        </button>
+      </div>
+
+      <div id="footer-bar">
+        <span id="per-click">per click: $1</span>
+        <div class="footer-buttons">
+          <button id="ach-btn" class="footer-btn" type="button">🏆 <span id="ach-count">0/0</span></button>
+          <button id="prestige-btn" class="footer-btn" type="button">⭐ Prestige</button>
+          <button id="reset-btn" type="button">🔄 Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <aside id="store" aria-label="Upgrade store">
+      <div id="store-title">Store</div>
+      <div id="buy-amounts">
+        <span>Buy</span>
+        <button class="amount-btn active" data-amount="1" type="button" aria-pressed="true">1</button>
+        <button class="amount-btn" data-amount="10" type="button" aria-pressed="false">10</button>
+        <button class="amount-btn" data-amount="100" type="button" aria-pressed="false">100</button>
+        <button class="amount-btn" data-amount="max" type="button" aria-pressed="false">Max</button>
+      </div>
+      <div id="upgrade-list"></div>
+    </aside>
+  </div>
+
+  <div id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <div id="ach-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="ach-modal-title" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-head">
+        <span id="ach-modal-title">🏆 Achievements</span>
+        <button class="modal-close" type="button" aria-label="Close achievements">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-note">Every achievement gives +1% income.</p>
+        <div id="ach-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="prestige-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="prestige-modal-title" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-head">
+        <span id="prestige-modal-title">⭐ Prestige</span>
+        <button class="modal-close" type="button" aria-label="Close prestige">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-note">Ascend to reset your money and upgrades in exchange for Gold Bars. Each Gold Bar gives a permanent +10% income.</p>
+        <div class="stat-row"><span>Gold Bars owned</span><b id="p-bars">0</b></div>
+        <div class="stat-row"><span>Income bonus</span><b id="p-bonus">x1.00</b></div>
+        <div class="stat-row"><span>Total earned (all time)</span><b id="p-total">$0</b></div>
+        <div class="stat-row"><span>Bars you would gain now</span><b id="p-pending">+0</b></div>
+        <div class="stat-row"><span>Next bar at (all time)</span><b id="p-next">$0</b></div>
+        <button id="ascend-btn" type="button" disabled>Earn more to ascend</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
